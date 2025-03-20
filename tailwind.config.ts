@@ -136,8 +136,9 @@ export default {
 				'rotate-slow': 'rotate-slow 20s linear infinite'
 			},
 			fontFamily: {
-				sans: ['Inter var', 'sans-serif'],
-				mono: ['JetBrains Mono', 'monospace']
+				sans: ['Montserrat', 'sans-serif'],
+				mono: ['JetBrains Mono', 'monospace'],
+				title: ['Coolvetica', 'sans-serif']
 			}
 		}
 	},

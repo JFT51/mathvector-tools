@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { CalculatorIcon, BookIcon, DownloadIcon, InfoIcon, MenuIcon, XIcon } from 'lucide-react';
 import { APP_TITLE } from '@/utils/constants';
 
 interface NavigationProps {
@@ -26,9 +25,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
   }, []);
 
   const navigationItems = [
-    { id: 'calculator', label: 'Vector Calculator', icon: <CalculatorIcon className="w-4 h-4 mr-2" /> },
-    { id: 'exercises', label: 'Oefeningen', icon: <BookIcon className="w-4 h-4 mr-2" /> },
-    { id: 'about', label: 'Over', icon: <InfoIcon className="w-4 h-4 mr-2" /> },
+    { id: 'calculator', label: 'Vector Calculator', icon: 'fa-calculator' },
+    { id: 'exercises', label: 'Oefeningen', icon: 'fa-book' },
+    { id: 'about', label: 'Over', icon: 'fa-info-circle' },
   ];
 
   const handleNavClick = (sectionId: string) => {
@@ -40,20 +39,20 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
     <header 
       className={cn(
         "fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300",
-        scrolled ? "bg-white/80 backdrop-blur-lg shadow-sm" : "bg-transparent"
+        scrolled ? "glassmorphism shadow-sm" : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div 
-            className="flex items-center opacity-0 animate-fade-in" 
+            className="flex items-center opacity-0 animate-fade-in cursor-pointer" 
             onClick={() => handleNavClick('hero')}
           >
             <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 mr-3">
-              <span className="text-primary font-bold">M</span>
+              <span className="text-primary font-title font-bold">M</span>
             </div>
-            <h1 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
+            <h1 className="text-xl font-bold gradient-text font-title tracking-wide">
               {APP_TITLE}
             </h1>
           </div>
@@ -70,12 +69,12 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
                   activeSection === item.id && "text-primary font-medium"
                 )}
               >
-                {item.icon}
+                <i className={`fas ${item.icon} mr-2`}></i>
                 {item.label}
               </button>
             ))}
             <button className="ml-4 flex items-center bg-gradient-to-r from-primary to-primary/90 text-white px-4 py-2 rounded-md shadow-sm hover:shadow-md transition-all opacity-0 animate-fade-in-delay-3">
-              <DownloadIcon className="w-4 h-4 mr-2" />
+              <i className="fas fa-download mr-2"></i>
               Download PDF
             </button>
           </nav>
@@ -86,9 +85,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
-              <XIcon className="w-6 h-6 text-primary" />
+              <i className="fas fa-times text-xl text-primary"></i>
             ) : (
-              <MenuIcon className="w-6 h-6 text-primary" />
+              <i className="fas fa-bars text-xl text-primary"></i>
             )}
           </button>
         </div>
@@ -96,7 +95,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
 
       {/* Mobile navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t border-gray-100 animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 right-0 glassmorphism animate-fade-in">
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-2">
               {navigationItems.map((item) => (
@@ -110,12 +109,12 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
                       : "hover:bg-gray-50"
                   )}
                 >
-                  {item.icon}
+                  <i className={`fas ${item.icon} mr-2`}></i>
                   {item.label}
                 </button>
               ))}
               <button className="flex items-center bg-primary text-white px-4 py-3 rounded-md mt-2">
-                <DownloadIcon className="w-4 h-4 mr-2" />
+                <i className="fas fa-download mr-2"></i>
                 Download PDF
               </button>
             </nav>
