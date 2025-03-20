@@ -21,12 +21,21 @@ const ExercisesSection: React.FC = () => {
   const [showSolution, setShowSolution] = useState<boolean>(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [exerciseType, setExerciseType] = useState<'angle' | 'innerProduct' | 'perpendicular'>('angle');
-  const [difficulty, setDifficulty] = useState<'Basic' | 'Intermediate' | 'Advanced'>('Basic');
+  const [difficulty, setDifficulty] = useState<'Basis' | 'Gemiddeld' | 'Gevorderd'>('Basis');
   
   // Generate a new exercise
   const handleGenerateExercise = () => {
     const exercise = generateExercise();
-    setCurrentExercise(exercise);
+    // Explicitly cast to ensure it matches the Exercise type
+    const typedExercise: Exercise = {
+      vector1: exercise.vector1 as [number, number],
+      vector2: exercise.vector2 as [number, number],
+      innerProduct: exercise.innerProduct,
+      angle: exercise.angle,
+      angleType: exercise.angleType as 'sharp' | 'right' | 'obtuse',
+      isPerpendicular: exercise.isPerpendicular
+    };
+    setCurrentExercise(typedExercise);
     setUserAnswer('');
     setShowSolution(false);
     setIsCorrect(null);
@@ -53,7 +62,7 @@ const ExercisesSection: React.FC = () => {
       case 'perpendicular':
         // For perpendicular, accept "yes"/"no" or "true"/"false"
         const normalizedAnswer = userAnswer.toLowerCase().trim();
-        const isPerpendicular = normalizedAnswer === 'yes' || normalizedAnswer === 'true';
+        const isPerpendicular = normalizedAnswer === 'ja' || normalizedAnswer === 'yes' || normalizedAnswer === 'true';
         correct = isPerpendicular === currentExercise.isPerpendicular;
         break;
     }
@@ -76,7 +85,7 @@ const ExercisesSection: React.FC = () => {
       case 'innerProduct':
         return `${currentExercise.innerProduct}`;
       case 'perpendicular':
-        return currentExercise.isPerpendicular ? 'Yes' : 'No';
+        return currentExercise.isPerpendicular ? 'Ja' : 'Nee';
     }
   };
   
@@ -90,11 +99,11 @@ const ExercisesSection: React.FC = () => {
     
     switch (exerciseType) {
       case 'angle':
-        return `Calculate the angle (in degrees) between the vectors ${u} and ${v}.`;
+        return `Bereken de hoek (in graden) tussen de vectoren ${u} en ${v}.`;
       case 'innerProduct':
-        return `Calculate the inner product of the vectors ${u} and ${v}.`;
+        return `Bereken het inwendig product van de vectoren ${u} en ${v}.`;
       case 'perpendicular':
-        return `Determine if the vectors ${u} and ${v} are perpendicular. Answer with "Yes" or "No".`;
+        return `Bepaal of de vectoren ${u} en ${v} loodrecht op elkaar staan. Antwoord met "Ja" of "Nee".`;
     }
   };
   
@@ -110,46 +119,46 @@ const ExercisesSection: React.FC = () => {
       case 'angle':
         return [
           {
-            title: "Calculate the inner product",
+            title: "Bereken het inwendig product",
             content: `u · v = (${x1} × ${x2}) + (${y1} × ${y2}) = ${innerProduct}`
           },
           {
-            title: "Calculate the magnitudes",
+            title: "Bereken de groottes",
             content: `|u| = √(${x1}² + ${y1}²) = ${Math.sqrt(x1*x1 + y1*y1).toFixed(2)}\n|v| = √(${x2}² + ${y2}²) = ${Math.sqrt(x2*x2 + y2*y2).toFixed(2)}`
           },
           {
-            title: "Apply the formula for the angle",
+            title: "Pas de formule voor de hoek toe",
             content: `cos(α) = (u · v) / (|u| × |v|) = ${innerProduct} / (${Math.sqrt(x1*x1 + y1*y1).toFixed(2)} × ${Math.sqrt(x2*x2 + y2*y2).toFixed(2)}) = ${Math.cos(angle * Math.PI / 180).toFixed(4)}`
           },
           {
-            title: "Calculate the angle in degrees",
+            title: "Bereken de hoek in graden",
             content: `α = arccos(${Math.cos(angle * Math.PI / 180).toFixed(4)}) = ${angle}°`
           }
         ];
       case 'innerProduct':
         return [
           {
-            title: "Apply the formula for inner product",
+            title: "Pas de formule voor inwendig product toe",
             content: `u · v = (${x1} × ${x2}) + (${y1} × ${y2})`
           },
           {
-            title: "Compute each term",
+            title: "Bereken elke term",
             content: `(${x1} × ${x2}) = ${x1 * x2}\n(${y1} × ${y2}) = ${y1 * y2}`
           },
           {
-            title: "Add the terms",
+            title: "Tel de termen op",
             content: `u · v = ${x1 * x2} + ${y1 * y2} = ${innerProduct}`
           }
         ];
       case 'perpendicular':
         return [
           {
-            title: "Calculate the inner product",
+            title: "Bereken het inwendig product",
             content: `u · v = (${x1} × ${x2}) + (${y1} × ${y2}) = ${innerProduct}`
           },
           {
-            title: "Check if inner product equals zero",
-            content: `Vectors are perpendicular if their inner product equals zero.\nInner product = ${innerProduct}\nTherefore, the vectors are ${Math.abs(innerProduct) < 0.000001 ? 'perpendicular (inner product ≈ 0)' : 'not perpendicular (inner product ≠ 0)'}.`
+            title: "Controleer of het inwendig product gelijk is aan nul",
+            content: `Vectoren staan loodrecht op elkaar als hun inwendig product gelijk is aan nul.\nInwendig product = ${innerProduct}\nDaarom staan de vectoren ${Math.abs(innerProduct) < 0.000001 ? 'loodrecht op elkaar (inwendig product ≈ 0)' : 'niet loodrecht op elkaar (inwendig product ≠ 0)'}.`
           }
         ];
     }
@@ -160,8 +169,8 @@ const ExercisesSection: React.FC = () => {
       <div className="mb-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between">
           <div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">Vector Exercises</h2>
-            <p className="text-gray-600">Practice calculating vector properties with interactive exercises</p>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">Vector Oefeningen</h2>
+            <p className="text-gray-600">Oefen het berekenen van vectoreigenschappen met interactieve oefeningen</p>
           </div>
           <div className="relative group mt-4 md:mt-0">
             <InfoIcon className="w-5 h-5 text-gray-400 hover:text-primary transition-colors cursor-help" />
@@ -176,11 +185,11 @@ const ExercisesSection: React.FC = () => {
         {/* Exercise generator */}
         <div className="space-y-6">
           <div className="space-y-4">
-            <h3 className="text-lg font-medium text-gray-900">Create Exercise</h3>
+            <h3 className="text-lg font-medium text-gray-900">Maak Oefening</h3>
             
             {/* Exercise type selection */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Exercise Type</label>
+              <label className="block text-sm font-medium text-gray-700">Type Oefening</label>
               <div className="flex flex-wrap gap-2">
                 <button 
                   onClick={() => setExerciseType('angle')}
@@ -191,7 +200,7 @@ const ExercisesSection: React.FC = () => {
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   )}
                 >
-                  Angle Between Vectors
+                  Hoek Tussen Vectoren
                 </button>
                 <button 
                   onClick={() => setExerciseType('innerProduct')}
@@ -202,7 +211,7 @@ const ExercisesSection: React.FC = () => {
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   )}
                 >
-                  Inner Product
+                  Inwendig Product
                 </button>
                 <button 
                   onClick={() => setExerciseType('perpendicular')}
@@ -213,47 +222,47 @@ const ExercisesSection: React.FC = () => {
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   )}
                 >
-                  Perpendicular Vectors
+                  Loodrechte Vectoren
                 </button>
               </div>
             </div>
             
             {/* Difficulty selection */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Difficulty</label>
+              <label className="block text-sm font-medium text-gray-700">Moeilijkheidsgraad</label>
               <div className="flex flex-wrap gap-2">
                 <button 
-                  onClick={() => setDifficulty('Basic')}
+                  onClick={() => setDifficulty('Basis')}
                   className={cn(
                     "px-3 py-2 text-sm rounded-md transition-colors",
-                    difficulty === 'Basic' 
+                    difficulty === 'Basis' 
                       ? "bg-green-500 text-white" 
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   )}
                 >
-                  Basic
+                  Basis
                 </button>
                 <button 
-                  onClick={() => setDifficulty('Intermediate')}
+                  onClick={() => setDifficulty('Gemiddeld')}
                   className={cn(
                     "px-3 py-2 text-sm rounded-md transition-colors",
-                    difficulty === 'Intermediate' 
+                    difficulty === 'Gemiddeld' 
                       ? "bg-yellow-500 text-white" 
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   )}
                 >
-                  Intermediate
+                  Gemiddeld
                 </button>
                 <button 
-                  onClick={() => setDifficulty('Advanced')}
+                  onClick={() => setDifficulty('Gevorderd')}
                   className={cn(
                     "px-3 py-2 text-sm rounded-md transition-colors",
-                    difficulty === 'Advanced' 
+                    difficulty === 'Gevorderd' 
                       ? "bg-red-500 text-white" 
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   )}
                 >
-                  Advanced
+                  Gevorderd
                 </button>
               </div>
             </div>
@@ -265,7 +274,7 @@ const ExercisesSection: React.FC = () => {
                 className="w-full py-3 bg-gradient-to-r from-primary to-primary/90 text-white font-medium rounded-lg shadow-sm hover:shadow-md transition-all flex items-center justify-center"
               >
                 <RefreshCwIcon className="w-5 h-5 mr-2" />
-                Generate New Exercise
+                Genereer Nieuwe Oefening
               </button>
             </div>
           </div>
@@ -274,7 +283,7 @@ const ExercisesSection: React.FC = () => {
           <div className="mt-6 space-y-3">
             <h3 className="text-base font-medium text-gray-700 flex items-center">
               <BookIcon className="w-4 h-4 mr-2 text-gray-500" />
-              Available Exercise Types
+              Beschikbare Oefeningtypes
             </h3>
             <div className="space-y-2">
               {VECTOR_EXERCISES.map((exercise) => (
@@ -286,9 +295,9 @@ const ExercisesSection: React.FC = () => {
                     <h4 className="text-sm font-medium text-gray-900">{exercise.title}</h4>
                     <span className={cn(
                       "text-xs px-2 py-0.5 rounded-full",
-                      exercise.difficulty === 'Basic' && "bg-green-100 text-green-800",
-                      exercise.difficulty === 'Intermediate' && "bg-yellow-100 text-yellow-800",
-                      exercise.difficulty === 'Advanced' && "bg-red-100 text-red-800"
+                      exercise.difficulty === 'Basis' && "bg-green-100 text-green-800",
+                      exercise.difficulty === 'Gemiddeld' && "bg-yellow-100 text-yellow-800",
+                      exercise.difficulty === 'Gevorderd' && "bg-red-100 text-red-800"
                     )}>
                       {exercise.difficulty}
                     </span>
@@ -307,20 +316,20 @@ const ExercisesSection: React.FC = () => {
               <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
                 <BookIcon className="w-8 h-8 text-gray-400" />
               </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No Exercise Generated</h3>
-              <p className="text-gray-500 max-w-xs">Generate a new exercise to start practicing vector calculations.</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">Geen Oefening Gegenereerd</h3>
+              <p className="text-gray-500 max-w-xs">Genereer een nieuwe oefening om te beginnen met het oefenen van vectorberekeningen.</p>
               <button
                 onClick={handleGenerateExercise}
                 className="mt-6 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
               >
-                Generate Exercise
+                Genereer Oefening
               </button>
             </div>
           ) : (
             <div className="space-y-6">
               {/* Exercise prompt */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Exercise</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">Oefening</h3>
                 <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
                   <p className="text-gray-800">{getExercisePrompt()}</p>
                 </div>
@@ -341,13 +350,13 @@ const ExercisesSection: React.FC = () => {
               
               {/* Answer input */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Your Answer</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">Jouw Antwoord</h3>
                 <div className="flex space-x-2">
                   <input
                     type="text"
                     value={userAnswer}
                     onChange={(e) => setUserAnswer(e.target.value)}
-                    placeholder={exerciseType === 'perpendicular' ? "Yes or No" : "Enter your answer..."}
+                    placeholder={exerciseType === 'perpendicular' ? "Ja of Nee" : "Voer je antwoord in..."}
                     className="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
                   />
                   <button
@@ -355,7 +364,7 @@ const ExercisesSection: React.FC = () => {
                     disabled={!userAnswer}
                     className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Check
+                    Controleer
                   </button>
                 </div>
                 
@@ -370,16 +379,16 @@ const ExercisesSection: React.FC = () => {
                         <CheckIcon className="w-5 h-5 mr-2 text-green-500 flex-shrink-0" />
                         <div>
                           <p className="font-medium">Correct!</p>
-                          <p className="text-sm opacity-80">Your answer is right.</p>
+                          <p className="text-sm opacity-80">Je antwoord is juist.</p>
                         </div>
                       </>
                     ) : (
                       <>
                         <XIcon className="w-5 h-5 mr-2 text-red-500 flex-shrink-0" />
                         <div>
-                          <p className="font-medium">Incorrect</p>
+                          <p className="font-medium">Onjuist</p>
                           <p className="text-sm opacity-80">
-                            The correct answer is {getCorrectAnswer()}
+                            Het juiste antwoord is {getCorrectAnswer()}
                           </p>
                         </div>
                       </>
@@ -394,7 +403,7 @@ const ExercisesSection: React.FC = () => {
                     className="flex items-center text-sm text-primary hover:text-primary/80 transition-colors"
                   >
                     <EyeIcon className="w-4 h-4 mr-1" />
-                    {showSolution ? "Hide Solution" : "Show Solution"}
+                    {showSolution ? "Verberg Oplossing" : "Toon Oplossing"}
                   </button>
                 </div>
               </div>
@@ -402,7 +411,7 @@ const ExercisesSection: React.FC = () => {
               {/* Step-by-step solution */}
               {showSolution && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 animate-fade-in">
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">Solution</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-3">Oplossing</h3>
                   <div className="space-y-4">
                     {getSolutionSteps().map((step, index) => (
                       <div key={index} className="space-y-2">
@@ -420,7 +429,7 @@ const ExercisesSection: React.FC = () => {
                     
                     <div className="mt-2 pt-2 border-t border-gray-100">
                       <div className="flex items-center">
-                        <span className="font-medium text-primary mr-2">Final Answer:</span>
+                        <span className="font-medium text-primary mr-2">Eindantwoord:</span>
                         <span className="font-mono">{getCorrectAnswer()}</span>
                       </div>
                     </div>

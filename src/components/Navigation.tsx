@@ -27,8 +27,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
 
   const navigationItems = [
     { id: 'calculator', label: 'Vector Calculator', icon: <CalculatorIcon className="w-4 h-4 mr-2" /> },
-    { id: 'exercises', label: 'Exercises', icon: <BookIcon className="w-4 h-4 mr-2" /> },
-    { id: 'about', label: 'About', icon: <InfoIcon className="w-4 h-4 mr-2" /> },
+    { id: 'exercises', label: 'Oefeningen', icon: <BookIcon className="w-4 h-4 mr-2" /> },
+    { id: 'about', label: 'Over', icon: <InfoIcon className="w-4 h-4 mr-2" /> },
   ];
 
   const handleNavClick = (sectionId: string) => {

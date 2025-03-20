@@ -33,7 +33,7 @@ const VectorCalculator: React.FC = () => {
       const [x2, y2] = vector2;
       
       if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) {
-        setInputError("Please enter valid numbers for all coordinates");
+        setInputError("Voer geldige getallen in voor alle coördinaten");
         return;
       }
       
@@ -54,8 +54,8 @@ const VectorCalculator: React.FC = () => {
       setIsPerpendicular(arePerpendicular(x1, y1, x2, y2));
       
     } catch (error) {
-      console.error("Calculation error:", error);
-      setInputError("An error occurred during calculation");
+      console.error("Berekeningsfout:", error);
+      setInputError("Er is een fout opgetreden tijdens de berekening");
     }
   }, [vector1, vector2]);
   
@@ -116,7 +116,7 @@ const VectorCalculator: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between">
           <div>
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">Vector Calculator</h2>
-            <p className="text-gray-600">Calculate inner product and angle between two vectors</p>
+            <p className="text-gray-600">Bereken inwendig product en hoek tussen twee vectoren</p>
           </div>
           <div className="mt-4 md:mt-0 flex space-x-2">
             <button
@@ -135,7 +135,7 @@ const VectorCalculator: React.FC = () => {
         <div className="space-y-6">
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <h3 className="text-lg font-medium text-gray-900">Enter Vector Coordinates</h3>
+              <h3 className="text-lg font-medium text-gray-900">Voer Vector Coördinaten In</h3>
               <div className="relative group">
                 <InfoIcon className="w-4 h-4 text-gray-400 hover:text-primary transition-colors cursor-help" />
                 <div className="absolute right-0 transform translate-y-2 z-10 w-64 p-3 bg-white rounded-lg shadow-lg border border-gray-200 text-sm text-gray-600 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
@@ -149,7 +149,7 @@ const VectorCalculator: React.FC = () => {
               <label className="block text-sm font-medium text-blue-800 mb-3">Vector u</label>
               <div className="flex space-x-4">
                 <div className="flex-1">
-                  <label className="block text-xs text-gray-500 mb-1">x₁ coordinate</label>
+                  <label className="block text-xs text-gray-500 mb-1">x₁ coördinaat</label>
                   <input
                     type="number"
                     value={vector1[0]}
@@ -159,7 +159,7 @@ const VectorCalculator: React.FC = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <label className="block text-xs text-gray-500 mb-1">y₁ coordinate</label>
+                  <label className="block text-xs text-gray-500 mb-1">y₁ coördinaat</label>
                   <input
                     type="number"
                     value={vector1[1]}
@@ -176,7 +176,7 @@ const VectorCalculator: React.FC = () => {
               <label className="block text-sm font-medium text-pink-800 mb-3">Vector v</label>
               <div className="flex space-x-4">
                 <div className="flex-1">
-                  <label className="block text-xs text-gray-500 mb-1">x₂ coordinate</label>
+                  <label className="block text-xs text-gray-500 mb-1">x₂ coördinaat</label>
                   <input
                     type="number"
                     value={vector2[0]}
@@ -186,7 +186,7 @@ const VectorCalculator: React.FC = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <label className="block text-xs text-gray-500 mb-1">y₂ coordinate</label>
+                  <label className="block text-xs text-gray-500 mb-1">y₂ coördinaat</label>
                   <input
                     type="number"
                     value={vector2[1]}
@@ -206,31 +206,31 @@ const VectorCalculator: React.FC = () => {
           
           {/* Examples */}
           <div>
-            <h3 className="text-sm font-medium text-gray-600 mb-3">Examples</h3>
+            <h3 className="text-sm font-medium text-gray-600 mb-3">Voorbeelden</h3>
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => handleExample('perpendicular')}
                 className="px-3 py-1.5 text-xs rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
               >
-                Perpendicular Vectors
+                Loodrechte Vectoren
               </button>
               <button
                 onClick={() => handleExample('parallel')}
                 className="px-3 py-1.5 text-xs rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
               >
-                Parallel Vectors
+                Parallelle Vectoren
               </button>
               <button
                 onClick={() => handleExample('acute')}
                 className="px-3 py-1.5 text-xs rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
               >
-                Acute Angle
+                Scherpe Hoek
               </button>
               <button
                 onClick={() => handleExample('obtuse')}
                 className="px-3 py-1.5 text-xs rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
               >
-                Obtuse Angle
+                Stompe Hoek
               </button>
             </div>
           </div>
@@ -239,12 +239,12 @@ const VectorCalculator: React.FC = () => {
           <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
             <h3 className="text-lg font-medium text-gray-900 mb-3 flex items-center">
               <Calculator className="w-5 h-5 mr-2 text-primary" />
-              Results
+              Resultaten
             </h3>
             <div className="space-y-4">
               <div>
                 <div className="flex items-center">
-                  <span className="text-sm text-gray-500 mr-2">Inner Product:</span>
+                  <span className="text-sm text-gray-500 mr-2">Inwendig Product:</span>
                   <span className="font-mono font-medium text-gray-900">{innerProduct}</span>
                   <div className="relative group ml-2">
                     <InfoIcon className="w-4 h-4 text-gray-400 cursor-help" />
@@ -262,7 +262,7 @@ const VectorCalculator: React.FC = () => {
               
               <div>
                 <div className="flex items-center">
-                  <span className="text-sm text-gray-500 mr-2">Angle between vectors:</span>
+                  <span className="text-sm text-gray-500 mr-2">Hoek tussen vectoren:</span>
                   <span 
                     className={cn(
                       "font-mono font-medium",
@@ -284,12 +284,12 @@ const VectorCalculator: React.FC = () => {
               
               <div>
                 <div className="flex items-center">
-                  <span className="text-sm text-gray-500 mr-2">Perpendicular:</span>
+                  <span className="text-sm text-gray-500 mr-2">Loodrecht:</span>
                   <span className={cn(
                     "font-medium",
                     isPerpendicular ? "text-green-600" : "text-gray-900"
                   )}>
-                    {isPerpendicular ? "Yes" : "No"}
+                    {isPerpendicular ? "Ja" : "Nee"}
                   </span>
                   <div className="relative group ml-2">
                     <InfoIcon className="w-4 h-4 text-gray-400 cursor-help" />
@@ -305,7 +305,7 @@ const VectorCalculator: React.FC = () => {
         
         {/* Visualization */}
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-gray-900">Vector Visualization</h3>
+          <h3 className="text-lg font-medium text-gray-900">Vector Visualisatie</h3>
           <div className="rounded-xl overflow-hidden bg-white shadow-sm">
             <VectorVisualization 
               vector1={vector1} 
@@ -321,8 +321,8 @@ const VectorCalculator: React.FC = () => {
             <div className="flex items-start">
               <CornerRightDownIcon className="w-5 h-5 mr-2 text-gray-400 mt-0.5" />
               <p>
-                The angle between vectors u({vector1[0]}, {vector1[1]}) and v({vector2[0]}, {vector2[1]}) is {angle}°. 
-                This is {isPerpendicular ? "a right angle, meaning the vectors are perpendicular." : `a ${angleType} angle.`}
+                De hoek tussen vectoren u({vector1[0]}, {vector1[1]}) en v({vector2[0]}, {vector2[1]}) is {angle}°. 
+                Dit is {isPerpendicular ? "een rechte hoek, wat betekent dat de vectoren loodrecht op elkaar staan." : `een ${angleType === 'sharp' ? 'scherpe' : angleType === 'right' ? 'rechte' : 'stompe'} hoek.`}
               </p>
             </div>
           </div>

@@ -67,13 +67,13 @@ const Index = () => {
             className="mb-6"
           >
             <span className="inline-block px-3 py-1 text-sm font-medium text-primary bg-primary/10 rounded-full mb-4">
-              Vector Mathematics
+              Vector Wiskunde
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
               {APP_TITLE}
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Interactive tools for teaching and learning vector operations, inner products, and angle calculations.
+              Interactieve tools voor het onderwijzen en leren van vectorbewerkingen, inwendige producten en hoekberekeningen.
             </p>
           </motion.div>
 
@@ -88,7 +88,7 @@ const Index = () => {
               className="flex items-center px-6 py-3 bg-primary text-white rounded-lg shadow-md hover:shadow-lg transition-all"
             >
               <CalculatorIcon className="w-5 h-5 mr-2" />
-              Try Vector Calculator
+              Probeer Vector Calculator
               <ChevronRightIcon className="w-5 h-5 ml-1" />
             </button>
             <button
@@ -96,7 +96,7 @@ const Index = () => {
               className="flex items-center px-6 py-3 bg-white text-gray-800 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all"
             >
               <BookOpenIcon className="w-5 h-5 mr-2" />
-              Practice with Exercises
+              Oefen met Opdrachten
             </button>
           </motion.div>
 
@@ -126,7 +126,7 @@ const Index = () => {
             <span className="text-sm font-medium text-primary">CALCULATOR</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Vector Calculator</h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-              Calculate inner products and angles between vectors with an interactive visualization tool.
+              Bereken inwendige producten en hoeken tussen vectoren met een interactief visualisatiehulpmiddel.
             </p>
           </div>
           <VectorCalculator />
@@ -140,10 +140,10 @@ const Index = () => {
       >
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 text-center">
-            <span className="text-sm font-medium text-primary">EXERCISES</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Practice Exercises</h2>
+            <span className="text-sm font-medium text-primary">OEFENINGEN</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Oefenopdrachten</h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-              Enhance your understanding with practical exercises on vector operations and angle calculations.
+              Verbeter je begrip met praktische oefeningen over vectoroperaties en hoekberekeningen.
             </p>
           </div>
           <ExercisesSection />
@@ -157,40 +157,40 @@ const Index = () => {
       >
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
-            <span className="text-sm font-medium text-primary">ABOUT</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">About MathVector Analytics</h2>
+            <span className="text-sm font-medium text-primary">OVER</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Over MathVector Analyse</h2>
           </div>
           
           <div className="bg-white/60 backdrop-blur-lg rounded-xl shadow-lg border border-white/50 p-6 lg:p-8">
             <div className="prose prose-lg prose-blue max-w-none">
-              <h3>Educational Purpose</h3>
+              <h3>Educatief Doel</h3>
               <p>
-                MathVector Analytics is designed to help mathematics educators and students explore and understand vector operations, with a focus on inner products and angle calculations. The platform provides interactive tools for visualization and computation of vector properties.
+                MathVector Analyse is ontworpen om wiskundedocenten en studenten te helpen bij het verkennen en begrijpen van vectorbewerkingen, met de nadruk op inwendige producten en hoekberekeningen. Het platform biedt interactieve tools voor visualisatie en berekening van vectoreigenschappen.
               </p>
               
-              <h3>Key Features</h3>
+              <h3>Belangrijkste Kenmerken</h3>
               <ul>
-                <li>Interactive vector calculator with real-time visualization</li>
-                <li>Practice exercises with automatic grading and step-by-step solutions</li>
-                <li>Dynamic visual representations of vector relationships</li>
-                <li>Comprehensive coverage of inner product concepts</li>
+                <li>Interactieve vector calculator met realtime visualisatie</li>
+                <li>Oefenopdrachten met automatische beoordeling en stapsgewijze oplossingen</li>
+                <li>Dynamische visuele representaties van vectorrelaties</li>
+                <li>Uitgebreide behandeling van concepten rond inwendig product</li>
               </ul>
               
-              <h3>Mathematical Concepts Covered</h3>
+              <h3>Behandelde Wiskundige Concepten</h3>
               <p>
-                The core concepts covered in this platform include:
+                De kernconcepten die in dit platform worden behandeld, zijn onder andere:
               </p>
               <ul>
-                <li>Inner (dot) product of two vectors</li>
-                <li>Angle calculation between vectors using the inner product</li>
-                <li>Perpendicularity (orthogonality) of vectors</li>
-                <li>Applications in geometry, including triangle centroids</li>
-                <li>Angle calculations between lines using direction vectors</li>
+                <li>Inwendig (scalair) product van twee vectoren</li>
+                <li>Hoekberekening tussen vectoren met behulp van het inwendig product</li>
+                <li>Loodrechtheid (orthogonaliteit) van vectoren</li>
+                <li>Toepassingen in de geometrie, waaronder zwaartepunten van driehoeken</li>
+                <li>Hoekberekeningen tussen lijnen met behulp van richtingsvectoren</li>
               </ul>
               
-              <h3>Using This Platform</h3>
+              <h3>Gebruik van dit Platform</h3>
               <p>
-                Teachers can use this platform for classroom demonstrations, to generate exercises for students, and to provide interactive learning materials. Students can use the tools to practice vector calculations, visualize vector relationships, and check their work with step-by-step solutions.
+                Docenten kunnen dit platform gebruiken voor demonstraties in de klas, om oefeningen voor studenten te genereren en om interactief lesmateriaal te bieden. Studenten kunnen de tools gebruiken om vectorberekeningen te oefenen, vectorrelaties te visualiseren en hun werk te controleren met stapsgewijze oplossingen.
               </p>
             </div>
           </div>
@@ -208,7 +208,7 @@ const Index = () => {
               <span className="text-gray-800 font-medium">{APP_TITLE}</span>
             </div>
             <p className="text-sm text-gray-500 mt-1">
-              Educational tools for vector mathematics
+              Educatieve tools voor vector wiskunde
             </p>
           </div>
           
@@ -217,16 +217,16 @@ const Index = () => {
               Calculator
             </button>
             <button onClick={() => handleSectionChange('exercises')} className="text-gray-600 hover:text-primary transition-colors">
-              Exercises
+              Oefeningen
             </button>
             <button onClick={() => handleSectionChange('about')} className="text-gray-600 hover:text-primary transition-colors">
-              About
+              Over
             </button>
           </div>
         </div>
         
         <div className="max-w-6xl mx-auto mt-6 pt-6 border-t border-gray-100 text-center text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} MathVector Analytics. All rights reserved.
+          &copy; {new Date().getFullYear()} MathVector Analyse. Alle rechten voorbehouden.
         </div>
       </footer>
     </div>
