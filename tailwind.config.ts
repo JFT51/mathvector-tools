@@ -138,7 +138,7 @@ export default {
 			fontFamily: {
 				sans: ['Montserrat', 'sans-serif'],
 				mono: ['JetBrains Mono', 'monospace'],
-				title: ['Coolvetica', 'sans-serif']
+				title: ['"League Spartan"', 'sans-serif']
 			}
 		}
 	},
